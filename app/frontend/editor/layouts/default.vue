@@ -1,16 +1,13 @@
 <template>
   <div class="h-full">
     <header class="flex h-16 border-b border-gray-200">
-      <router-link
-        v-if="currentSite && currentPage && currentLocale"
-        :to="{
-          name: 'editPage',
-          params: { locale: currentLocale, pageId: pageId },
-        }"
-        class="w-16 h-full flex justify-center items-center border-r border-gray-200"
-      >
-        <img v-bind:src="logoUrl" class="w-2/4" />
-      </router-link>
+        <a
+          :href="leaveEditorUrl"
+          class="w-16 h-full flex justify-center items-center border-r border-gray-200"
+          v-tooltip.right="$t('sidebarNav.leaveEditorTooltip')"
+        >
+          <img v-bind:src="logoUrl" class="w-2/4" />
+        </a>
       <div
         class="w-16 h-full flex justify-center items-center border-r border-gray-200"
         v-else
@@ -42,6 +39,9 @@ export default {
   computed: {
     logoUrl() {
       return this.$store.state.editorSettings.logoUrl
+    },
+    leaveEditorUrl() {
+      return window.leaveUrl;
     },
     pageId() {
       return this.currentPage.pathHash[this.currentLocale]
