@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Maglev
   # Retrieve a page from a path and a locale
   # (previously extracted by the ExtractLocale service)
@@ -10,6 +8,7 @@ module Maglev
     argument :locale
     argument :default_locale
     argument :fallback_to_default_locale, default: false
+    argument :site_id
 
     def call
       page = fetch_page(path, locale)
@@ -20,7 +19,7 @@ module Maglev
     protected
 
     def fetch_page(path, locale)
-      Maglev::Page.by_path(path || 'index', locale).first
+      Maglev::Page.where(site_id: site_id).by_path(path || 'index', locale).first
     end
   end
 end

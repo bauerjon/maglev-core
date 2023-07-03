@@ -5,7 +5,7 @@
         <button
           class="h-full w-full px-6 hover:bg-editor-primary hover:bg-opacity-5 transition-colors duration-200 flex items-center focus:outline-none focus:none"
         >
-          <span>{{ $t('headerNav.previewToggler.button') }}</span>
+          <span>poop</span>
           <icon name="arrow-down-s-line" />
         </button>
       </template>

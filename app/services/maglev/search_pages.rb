@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Maglev
   # Search for a single page if the id param is passed to the call function
   # or search for all the pages matching or not the q criteria (based on its presence).
@@ -14,6 +12,7 @@ module Maglev
     argument :q, default: nil
     argument :content_locale
     argument :default_locale
+    argument :site_id
 
     def call
       id.nil? ? all_pages : single_page
@@ -54,7 +53,7 @@ module Maglev
     end
 
     def resources
-      ::Maglev::Page
+      ::Maglev::Page.where(site_id: site_id)
     end
   end
 end

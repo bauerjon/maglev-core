@@ -2,9 +2,9 @@
   "headerNav": {
     "pages": "Pages:",
     "pageSettings": "Page settings",
-    "previewSite": "Preview site",
+    "previewSite": "View site",
     "previewToggler": {
-      "button": "Preview site",
+      "button": "View site",
       "draftLink": "Draft version",
       "liveLink": "Live version"
     },

@@ -10,7 +10,7 @@ module Maglev
     include Maglev::GetPageSections::TransformLinkConcern
     include Maglev::GetPageSections::TransformCollectionItemConcern
 
-    dependency :fetch_site
+    dependency :site
     dependency :fetch_theme
     dependency :fetch_collection_items
     dependency :fetch_static_pages
@@ -33,7 +33,7 @@ module Maglev
     end
 
     def site
-      fetch_site.call
+      Maglev::Site.find(page.site_id)
     end
 
     def transform_section(section)

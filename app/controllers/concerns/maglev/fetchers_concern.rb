@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Maglev
   module FetchersConcern
     extend ActiveSupport::Concern
@@ -22,7 +20,9 @@ module Maglev
     end
 
     def fetch_maglev_site
-      @fetch_maglev_site ||= maglev_services.fetch_site.call
+      @fetch_maglev_site = Maglev::Site.find(current_site.id).tap do |site|
+        Maglev::I18n.available_locales = site.locale_prefixes
+      end
     end
 
     def fetch_maglev_page
@@ -30,7 +30,8 @@ module Maglev
         path: maglev_page_path_from_params,
         locale: content_locale,
         default_locale: default_content_locale,
-        fallback_to_default_locale: fallback_to_default_locale
+        fallback_to_default_locale: fallback_to_default_locale,
+        site_id: current_site.id
       )
     end
 
@@ -119,3 +120,4 @@ module Maglev
     end
   end
 end
+
